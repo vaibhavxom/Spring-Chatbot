@@ -113,4 +113,8 @@ function clearChat() {
         clearInterval(typingInterval);
         isTyping = false;
     }
+
+    // Hide the interrupt button
+    const interruptButton = document.getElementById('interrupt-btn');
+    interruptButton.style.display = "none";
 }

@@ -4,30 +4,27 @@
     <meta charset="UTF-8">
     <meta name="referrer" content="no-referrer">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChatBot</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>SpringChatBot</title>
+    <link rel="stylesheet" href="/styles.css">
 </head>
-<body>
+<body class="light-theme">
     <div id="chat-container">
-        <div id="header">
+        <div class="header">
             <h1>SpringChatBot</h1>
-            <button id="theme-toggle" onclick="toggleTheme()">🌙</button>
+            <button id="theme-toggle" onclick="toggleTheme()">🌞</button>
         </div>
 
-        <div id="chat-box">
-            <div id="messages"></div> <!-- This will hold chat messages -->
-        </div>
+        <div id="chat-box"></div>
 
         <div id="message-wrapper">
             <input type="text" id="message" placeholder="Type your message..." onkeydown="checkEnter(event)" />
             <button id="send-btn" onclick="sendMessage()">Send</button>
-            <button id="interrupt-btn" onclick="interruptTyping()">Interrupt</button>
             <button id="clear-btn" onclick="clearChat()">Clear</button>
         </div>
-
+        
         <div id="response"></div>
     </div>
 
-    <script src="scripts.js"></script>
+    <script src="/scripts.js"></script>
 </body>
 </html>

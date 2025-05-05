@@ -1,204 +1,185 @@
-/* General page styling */
-body {
-    font-family: 'Arial', sans-serif;
+:root {
+    --bg-color: #f4f4f4;
+    --text-color: #333;
+    --primary: #007bff;
+    --primary-dark: #0056b3;
+    --user-msg-bg: #007bff;
+    --user-msg-color: #fff;
+    --bot-msg-bg: #e5e5e5;
+    --bot-msg-color: #333;
+    --btn-danger: #dc3545;
+    --btn-danger-hover: #c82333;
+}
+
+body.dark-theme {
+    --bg-color: #1e1e1e;
+    --text-color: #e2e2e2;
+    --primary: #3d8bfd;
+    --primary-dark: #2f6bd1;
+    --user-msg-bg: #3d8bfd;
+    --user-msg-color: #ffffff;
+    --bot-msg-bg: #2c2c2c;
+    --bot-msg-color: #e2e2e2;
+    --btn-danger: #ff6b6b;
+    --btn-danger-hover: #e63946;
+}
+
+* {
     margin: 0;
     padding: 0;
-    background-color: #f4f6f9;
+    box-sizing: border-box;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    transition: background-color 0.3s, color 0.3s;
+    background: var(--bg-color);
+}
+
+body.dark-theme {
+    background: linear-gradient(135deg, #1e1e1e, #2c2c2c);
 }
 
 #chat-container {
-    background-color: #ffffff;
-    border-radius: 8px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     width: 100%;
-    max-width: 400px;
+    max-width: 650px;
+    background-color: var(--bg-color);
+    border-radius: 20px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
     padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    transition: background-color 0.3s, border-color 0.3s;
+    height: 85vh;
 }
 
-#header {
+.header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    margin-bottom: 15px;
 }
 
-#header h1 {
-    font-size: 24px;
-    margin: 0;
+h1 {
+    font-size: 1.8rem;
 }
 
 #theme-toggle {
     background: none;
     border: none;
-    font-size: 20px;
+    font-size: 1.5rem;
     cursor: pointer;
-    color: #333;
+    color: var(--text-color);
+    transition: transform 0.3s;
+}
+
+#theme-toggle:hover {
+    transform: rotate(20deg);
 }
 
 #chat-box {
     flex-grow: 1;
     overflow-y: auto;
-    max-height: 300px;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    background-color: #f9f9f9;
-    transition: background-color 0.3s, border-color 0.3s;
-}
-
-#messages {
+    margin-bottom: 20px;
+    padding-right: 5px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    scroll-behavior: smooth;
+}
+
+.message {
+    padding: 12px 16px;
+    border-radius: 15px;
+    margin: 10px 0;
+    max-width: 80%;
+    word-wrap: break-word;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.user-message {
+    background-color: var(--user-msg-bg);
+    color: var(--user-msg-color);
+    margin-left: auto;
+    text-align: right;
+}
+
+.gemini-message {
+    background-color: var(--bot-msg-bg);
+    color: var(--bot-msg-color);
+    margin-right: auto;
 }
 
 #message-wrapper {
     display: flex;
-    justify-content: space-between;
-    gap: 10px;
     align-items: center;
+    gap: 10px;
 }
 
 #message {
-    width: 75%;
-    padding: 10px;
+    flex: 1;
+    padding: 12px;
+    border-radius: 20px;
     border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
+    font-size: 1rem;
     outline: none;
-    transition: border 0.3s, background-color 0.3s;
-}
-
-#message:focus {
-    border-color: #007BFF;
 }
 
 button {
     padding: 10px 15px;
-    font-size: 14px;
     border: none;
-    background-color: #007BFF;
-    color: white;
-    border-radius: 4px;
+    border-radius: 20px;
+    font-size: 1rem;
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
 }
 
-button:hover {
-    background-color: #0056b3;
-    transform: scale(1.05);
+#send-btn {
+    background-color: var(--primary);
+    color: white;
+}
+
+#send-btn:hover {
+    background-color: var(--primary-dark);
 }
 
 #interrupt-btn {
-    background-color: #f39c12;
+    background-color: var(--btn-danger);
+    color: white;
 }
 
 #interrupt-btn:hover {
-    background-color: #e67e22;
+    background-color: var(--btn-danger-hover);
+}
+
+/* Spinner for Send Button */
+.spinner {
+    display: none;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top: 4px solid white;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+#send-btn.loading #loading-spinner {
+    display: inline-block;
 }
 
 #clear-btn {
-    background-color: #e74c3c;
+    background-color: var(--btn-danger);
+    color: white;
 }
 
 #clear-btn:hover {
-    background-color: #c0392b;
-}
-
-button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-}
-
-button:disabled:hover {
-    background-color: #ccc;
-    transform: none;
-}
-
-#response {
-    color: #333;
-    font-size: 14px;
-    margin-top: 10px;
-}
-
-/* Dark mode styles */
-body.dark-mode {
-    background-color: #121212;
-    color: white;
-}
-
-body.dark-mode #chat-container {
-    background-color: #1f1f1f;
-    border-color: #333;
-}
-
-body.dark-mode #message {
-    border-color: #444;
-    background-color: #2c2c2c;
-    color: white;
-}
-
-body.dark-mode button {
-    background-color: #333;
-    color: white;
-}
-
-body.dark-mode button:hover {
-    background-color: #444;
-    transform: scale(1.05);
-}
-
-body.dark-mode #clear-btn {
-    background-color: #e74c3c;
-}
-
-body.dark-mode #interrupt-btn {
-    background-color: #f39c12;
-}
-
-/* Responsive Design (Media Queries) */
-@media (max-width: 600px) {
-    #chat-container {
-        width: 90%;
-        max-width: 100%;
-        padding: 15px;
-    }
-
-    #message {
-        width: 65%;
-    }
-
-    button {
-        font-size: 12px;
-        padding: 8px 12px;
-    }
-
-    #theme-toggle {
-        font-size: 18px;
-    }
-}
-
-@media (max-width: 400px) {
-    #message-wrapper {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    #message {
-        width: 100%;
-        margin-bottom: 10px;
-    }
-
-    button {
-        width: 100%;
-        margin-top: 5px;
-    }
+    background-color: var(--btn-danger-hover);
 }
